@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { AgregaGenero } from './componenetes/AgregaGenero';
 import { ResultadoVideojuegos } from './componenetes/ResultadoVideojuegos';
 
+
 export const VideojuegosApp = () => {
 
     //Utilizamos el hook useState para inicializar la lista de generos de videojuegos.
