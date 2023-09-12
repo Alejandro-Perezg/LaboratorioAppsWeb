@@ -39,15 +39,19 @@ export const ResultadoVideojuegos = ({ genero }) => {
 Creamos la lista de juegos con la información que recuperamos de la invocación del api de RAWG,
 utilizando la variable infoJuegos que obtuvimos en la desestructuración del hook useState.
 */}
-            <ol className="flex-row list-group">
+            <div className="list-group flex-row">
                 {
                     //Desestructuramos el objeto para obtener el id y el nombre del juego.
-                    infoJuegos.map(({ id, nombre}) => (
-                        <li key={id} className="list-group-item">{nombre}</li>
+                    infoJuegos.map(({ id, nombre,imagen,metacritic,rating}) => (
+                        <>
                         
+                        <p key={id} className="list-group-item">{nombre} metacritic:{metacritic} rating: {rating}</p>
+                        
+                        
+                        </>
                     ))
                 }
-            </ol>
+            </div>
         </>
     )
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AgregaGenero } from './componenetes/AgregaGenero';
-import { ResultadoVideojuegos } from './componenetes/ResultadoVideojuegos';
+//import { ResultadoVideojuegos } from './componenetes/ResultadoVideojuegos';
+import { InfoVideojuegos } from './componenetes/InfoVideojuegos';
 
 
 export const VideojuegosApp = () => {
@@ -34,19 +35,19 @@ export const VideojuegosApp = () => {
             {/*
             Creamos la lista de géneros
             */}
-            <ol className="list-group list-group-numbered">
+            <div className="card list-group list-group-numbered">
                 {
                     generos.map(genero => {
                         //Reemplazamos el elemento <li> por la llamda al componente ResultadoVideojuegos, pasando
                         // como parámetro el género. Se tiene que utilizar la propiedad key al igual que se hizo
                         // con el elemento <li> anteriormente
-                        return <ResultadoVideojuegos
+                        return <InfoVideojuegos
                         key={genero}
                         genero={genero}
                         />
                     })
                 }
-            </ol>
+            </div>
         </>
     )
 }
