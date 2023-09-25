@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useFetch } from '../hooks/useFetch';
 //Recibe como argumento el género que se va utilizar para hacer la búsqueda de los videojuegos
 // utilizando el API de RAWG
 export const InfoVideojuegos = ({ genero }) => {
@@ -7,6 +8,14 @@ export const InfoVideojuegos = ({ genero }) => {
     useEffect(() => {
         getVideojuegos();
     }, []);
+
+    // Utilizamos el state de useContador como id del juego.
+    const { loading, info } = useFetch('https://api.rawg.io/api/games?key=388526bdf78349038115fd1273791108&genres=' + genero);
+    console.log('Loading state: ',loading);
+    console.log('Info state: ',info);
+    
+
+    
     //Creamos el estado del componente con useState
     const [infoJuegos, setInfoJuegos] = useState([]);
     //Invocamos el api de RAWG para obtener los videojuegos del género proporcionado en los parámetrs del
@@ -15,6 +24,8 @@ export const InfoVideojuegos = ({ genero }) => {
         //URL del api de RAWG que validamos en postman. Le concatenamos el genero que recibimos como parámetro
         // en el componente.
         const url = 'https://api.rawg.io/api/games?key=388526bdf78349038115fd1273791108&genres=' + encodeURI(genero);
+        
+        
         //Utilizamos Fetch API para invocar la url.
         const respuesta = await fetch(url);
         //Recuperamos el JSON de la respuesta, el cual contiene la información de los videojuegos.
@@ -32,20 +43,36 @@ export const InfoVideojuegos = ({ genero }) => {
         console.log(juegos);
         //Invocamos el metodo setInfoJuegos que obtivimos con la desestructuración del hook useState
         setInfoJuegos(juegos);
+
+
+
     }
+
+
+
+
     return (
         <>
             <h3 className="card-title">{genero}</h3>
             {/*
 Creamos la lista de juegos con la información que recuperamos de la invocación del api de RAWG,
 utilizando la variable infoJuegos que obtuvimos en la desestructuración del hook useState.
-*/}
+*/} 
+        <hr />
+        {
+            loading?
+            (
+                <div className="alert alert-info text-center">
+                Loading...
+                </div>
+            )
+            :
+            (
             <div className="card list-group flex-row row-cols-6">
                 {
                     //Desestructuramos el objeto para obtener el id y el nombre del juego.
-
                     //Se crea la estructura de flex y cartas cambaindo los <ol> por <div.>
-
+                   
                     infoJuegos.map(({ id, nombre,imagen,metacritic,rating}) => (
 
                         <>
@@ -58,10 +85,18 @@ utilizando la variable infoJuegos que obtuvimos en la desestructuración del hoo
                             </div>
                         </>
                     ))
+                    
                 }
             </div>
+            )
+            
+
+        }
         </>
     )
+
+
+
 }
 InfoVideojuegos.propTypes = {
     setInfoJuegos: PropTypes.func.isRequired

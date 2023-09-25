@@ -9,6 +9,8 @@ export const VideojuegosApp = () => {
     //Utilizamos el hook useState para inicializar la lista de generos de videojuegos.
     const [generos, setGeneros] = useState(['action']);
 
+
+
     //Función que nos permite cambiar el estado de la lista de géneros para agregar
     // nuevos géneros a la lista.
     // const agregaGenero = () => {
@@ -25,16 +27,7 @@ export const VideojuegosApp = () => {
                 </div>
             </div>
             <AgregaGenero setGeneros = {setGeneros}/>
-            {
-            /*
-            Botón que vamos a utilizar para agregar un género a la lista. Al hacer clic se manda
-            llamar la función agregaGenero.
-            */
-            }
-            {/* <button type="button" className="btn btn-primary" onClick={agregaGenero}>Agregar Género</button> */}
-            {/*
-            Creamos la lista de géneros
-            */}
+
             <div className="card list-group list-group-numbered">
                 {
                     generos.map(genero => {
