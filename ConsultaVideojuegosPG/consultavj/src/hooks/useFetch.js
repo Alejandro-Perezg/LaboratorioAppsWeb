@@ -4,7 +4,6 @@ export const useFetch = (url) => {
     const [state, setState] = useState({
         info: null,
         loading: true,
-        error: null
     });
     
     //Utilizamos un useEffect para indicar que se actualice el estado cada vez que la url cambie.
@@ -18,7 +17,6 @@ export const useFetch = (url) => {
             .then((info) => {
                 setState({
                     loading: false,
-                    error: null,
                     info
                 });
             });
@@ -26,7 +24,6 @@ export const useFetch = (url) => {
         return () => {
             setState({
                 loading: true,
-                error: null,
                 info: null
             });
         }

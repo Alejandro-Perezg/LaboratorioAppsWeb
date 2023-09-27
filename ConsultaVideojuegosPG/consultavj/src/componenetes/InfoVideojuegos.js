@@ -13,6 +13,8 @@ export const InfoVideojuegos = ({ genero }) => {
     const { loading, info } = useFetch('https://api.rawg.io/api/games?key=388526bdf78349038115fd1273791108&genres=' + genero);
     console.log('Loading state: ',loading);
     console.log('Info state: ',info);
+
+
     
 
     
@@ -40,16 +42,13 @@ export const InfoVideojuegos = ({ genero }) => {
                 metacritic: juego.metacritic
             }
         });
-        console.log(juegos);
+       // console.log('info: ',juegos);
         //Invocamos el metodo setInfoJuegos que obtivimos con la desestructuración del hook useState
         setInfoJuegos(juegos);
 
 
 
     }
-
-
-
 
     return (
         <>
@@ -89,8 +88,6 @@ utilizando la variable infoJuegos que obtuvimos en la desestructuración del hoo
                 }
             </div>
             )
-            
-
         }
         </>
     )
